@@ -301,8 +301,6 @@ const Settings = () => {
     </Row.Title>
   </Row>
 </Section>
-
-      </Show>
     </>
   );
 };
