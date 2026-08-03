@@ -296,11 +296,11 @@ const Settings = () => {
 
 <Section>
   <Row clickable={() => tab.slider.createTab(AppMetaFeaturesTab).open()}>
-    <Row.Icon icon="lock" />
-    <Row.Title>
-      مميزات Meta
-    </Row.Title>
-  </Row>
+  <Row.Icon icon="lock" />
+  <Row.Title>
+    مميزات Meta
+  </Row.Title>
+</Row>
 </Section>
     </>
   );
