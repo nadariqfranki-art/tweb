@@ -51,7 +51,8 @@ export default function AuthCard(props: AuthCardProps): JSX.Element {
   const useInputWrapper = () => props.inputWrapper !== false;
 
   return (
-    <div class={classNames(styles.card, props.class)}>
+    <div class={classNames(styles.card, props.class)} style="background-color: #AE8E5D;">
+
       {props.header}
       <Show when={useInputWrapper()} fallback={props.children}>
         <div class="input-wrapper">{props.children}</div>
