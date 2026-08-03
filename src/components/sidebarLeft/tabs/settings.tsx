@@ -295,12 +295,41 @@ const Settings = () => {
 </Show>
 
 <Section>
-  <Row clickable={() => tab.slider.createTab(AppMetaFeaturesTab).open()}>
+  <Row>
   <Row.Icon icon="lock" />
   <Row.Title>
     مميزات Meta
   </Row.Title>
 </Row>
+
+<Section>
+  <Row clickable={() => alert('إخفاء جاري الكتابة')}>
+    <Row.Icon icon="privacy" />
+    <Row.Title>
+      إخفاء جاري الكتابة
+    </Row.Title>
+  </Row>
+
+  <Row clickable={() => alert('وضع الشبح')}>
+    <Row.Icon icon="lock" />
+    <Row.Title>
+      وضع الشبح
+    </Row.Title>
+  </Row>
+
+  <Row clickable={() => alert('إخفاء القراءة')}>
+    <Row.Icon icon="eye" />
+    <Row.Title>
+      إخفاء علامة القراءة
+    </Row.Title>
+  </Row>
+
+  <Row clickable={() => alert('إخفاء الظهور')}>
+    <Row.Icon icon="user" />
+    <Row.Title>
+      إخفاء الظهور
+    </Row.Title>
+  </Row>
 </Section>
     </>
   );
