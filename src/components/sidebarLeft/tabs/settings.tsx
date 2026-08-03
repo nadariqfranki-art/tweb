@@ -294,7 +294,7 @@ const Settings = () => {
 </Show>
 
 <Section>
-  <Row clickable={() => console.log('Meta clicked')}>
+  <Row clickable={() => alert('Meta clicked')}>
     <Row.Icon icon="lock" />
     <Row.Title>
       مميزات Meta
