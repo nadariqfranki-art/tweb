@@ -31,6 +31,11 @@ export const AppPasscodeLockTab =
     }
   });
 
+export const AppMetaFeaturesTab =
+  scaffoldSolidJSTab({
+    title: 'Meta.Features',
+    getComponentModule: () => import('../sidebarLeft/tabs/metaFeatures')
+  });
 
 type AppPasscodeEnterPasswordTabPayload = {
   onSubmit: (passcode: string, tab: InstanceOf<typeof AppPasscodeEnterPasswordTab>, passcodeActions: PasscodeActions) => MaybePromise<void>;
