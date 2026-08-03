@@ -288,8 +288,8 @@ const Settings = () => {
             <Row.Title>{i18n('Chat.Menu.SendGift')}</Row.Title>
           </Row>
         <Section>
-  <Row clickable={...}>
-    <Row.Icon icon="privacy" />
+  <Row clickable={() => console.log('Meta clicked')}>
+    <Row.Icon icon="lock" />
     <Row.Title>مميزات Meta</Row.Title>
   </Row>
 </Section>
