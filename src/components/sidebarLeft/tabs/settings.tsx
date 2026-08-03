@@ -6,7 +6,8 @@ import {
   AppEditProfileTab,
   AppGeneralSettingsTab,
   AppKeyboardShortcutsTab,
-  AppLanguageTab,
+  AppLanguageTab
+  
   AppNotificationsTab,
   AppSpeakersAndCameraTab,
   getEditProfileInitArgs
@@ -288,6 +289,20 @@ const Settings = () => {
             <Row.Title>{i18n('Chat.Menu.SendGift')}</Row.Title>
           </Row>
         </Section>
+        
+  <Row clickable={() => PopupElement.show({
+    title: 'مميزات Meta',
+    subtitle: 'إخفاء الظهور وجاري الكتابة',
+    text: 'هذه الميزة تتيح لك تصفح التطبيق بحرية تامة دون أن يرى الآخرون حالتك المتصلة أو عندما تقوم بكتابة رسالة جديدة.',
+    buttons: [{ text: 'حفظ الإعدادات', type: 'primary' }]
+  })}>
+    <Row.Icon icon="privacy" />
+    <Row.Title titleRight={<span style="color: var(--accent-color);">مفعل</span>}>
+  مميزات Meta
+</Row.Title>
+
+  </Row>
+
       </Show>
     </>
   );
