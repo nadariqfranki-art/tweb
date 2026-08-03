@@ -261,36 +261,44 @@ const Settings = () => {
           </Row>
         </div>
       </Section>
-      <Show when={!premiumBlocked()}>
-        <Section>
-          <Row clickable={() => PopupPremium.show()}>
-            <Row.Icon icon="star" class="row-icon-premium-color" />
-            <Row.Title>{i18n('Premium.Boarding.Title')}</Row.Title>
-          </Row>
-          <Show when={!!stars()}>
-            <Row clickable={() => PopupElement.createPopup(PopupStars)}>
-              <Row.Icon icon="star" class="row-icon-stars-color" />
-              <Row.Title titleRight={'' + stars()} titleRightSecondary>
-                {i18n('MenuTelegramStars')}
-              </Row.Title>
-            </Row>
-          </Show>
-          <Show when={String(starsTon()) !== '0'}>
-            <Row clickable={() => PopupElement.createPopup(PopupStars, {ton: true})}>
-              <Row.Icon icon="ton" />
-              <Row.Title titleRight={formatNanoton(starsTon())} titleRightSecondary>
-                {i18n('MenuTelegramStarsTon')}
-              </Row.Title>
-            </Row>
-          </Show>
-          <Row clickable={onSendGiftClick}>
-            <Row.Icon icon="gift" />
-            <Row.Title>{i18n('Chat.Menu.SendGift')}</Row.Title>
-          </Row>
-        <Section>
+    <Show when={!premiumBlocked()}>
+  <Section>
+    <Row clickable={() => PopupPremium.show()}>
+      <Row.Icon icon="star" class="row-icon-premium-color" />
+      <Row.Title>{i18n('Premium.Boarding.Title')}</Row.Title>
+    </Row>
+
+    <Show when={!!stars()}>
+      <Row clickable={() => PopupElement.createPopup(PopupStars)}>
+        <Row.Icon icon="star" class="row-icon-stars-color" />
+        <Row.Title titleRight={'' + stars()} titleRightSecondary>
+          {i18n('MenuTelegramStars')}
+        </Row.Title>
+      </Row>
+    </Show>
+
+    <Show when={String(starsTon()) !== '0'}>
+      <Row clickable={() => PopupElement.createPopup(PopupStars, {ton: true})}>
+        <Row.Icon icon="ton" />
+        <Row.Title titleRight={formatNanoton(starsTon())} titleRightSecondary>
+          {i18n('MenuTelegramStarsTon')}
+        </Row.Title>
+      </Row>
+    </Show>
+
+    <Row clickable={onSendGiftClick}>
+      <Row.Icon icon="gift" />
+      <Row.Title>{i18n('Chat.Menu.SendGift')}</Row.Title>
+    </Row>
+  </Section>
+</Show>
+
+<Section>
   <Row clickable={() => console.log('Meta clicked')}>
     <Row.Icon icon="lock" />
-    <Row.Title>مميزات Meta</Row.Title>
+    <Row.Title>
+      مميزات Meta
+    </Row.Title>
   </Row>
 </Section>
 
