@@ -40,7 +40,7 @@ import {usePromiseCollector} from '@components/solidJsTabs/promiseCollector';
 import {subscribeOn} from '@helpers/solid/subscribeOn';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Helper — wraps a sub-tab declaration. If the tab has a static `getInitArgs`,
+// Helper -- wraps a sub-tab declaration. If the tab has a static `getInitArgs`,
 // fires the prefetch immediately so the per-domain promises (themes / filters /
 // privacy bundle / etc.) start downloading the moment Settings opens.
 // On click we await whatever was prefetched, hand it to `tab.open(...)`, and
@@ -83,6 +83,11 @@ const Settings = () => {
   const promiseCollector = usePromiseCollector();
   const [tab] = useSuperTab();
 
+  // ===== ✅ تعريف Signals المميزات الجديدة =====
+  const [antiScreenshot, setAntiScreenshot] = createSignal(false);
+  const [readReceipts, setReadReceipts] = createSignal(false);
+  const [hdUploads, setHdUploads] = createSignal(false);
+
   // ── Header (qr + edit + overflow menu)
   const qrBtn = ButtonIcon('qr');
   const editBtn = ButtonIcon('edit');
@@ -105,7 +110,7 @@ const Settings = () => {
     showMyQrCodePopup();
   }, {listenerSetter: tab.listenerSetter});
 
-  // ── Edit profile click — prefetch args, refresh on user_update.
+  // ── Edit profile click -- prefetch args, refresh on user_update.
   let editProfileArgs: ReturnType<typeof getEditProfileInitArgs>;
   const refreshEditProfileArgs = () => {
     editProfileArgs = getEditProfileInitArgs();
@@ -189,7 +194,7 @@ const Settings = () => {
   };
 
   // ── Premium section. Signal-backed so `<Show>` re-evaluates when the
-  //    "purchase blocked" check resolves before `selectTab` fires — the section
+  //    "purchase blocked" check resolves before `selectTab` fires -- the section
   //    either appears with the rest of the tab, or doesn't appear at all.
   const [premiumBlocked, setPremiumBlocked] = createSignal(false);
   promiseCollector.collect(
@@ -203,7 +208,7 @@ const Settings = () => {
 
   // ── Self profile (avatar + name + collapse-on-scroll). The avatar inside
   //    `PeerProfileAvatars` is filled async via `setPeer()` (peer photo IPC →
-  //    appearance render → thumb load) — without waiting, the gradient header
+  //    appearance render → thumb load) -- without waiting, the gradient header
   //    is rendered empty and the avatar pops in mid-transition. We collect the
   //    `onAvatarReady` promise so the tab opens with the avatar already in DOM.
   const peerProfileElement = renderPeerProfile({
@@ -214,7 +219,7 @@ const Settings = () => {
     onAvatarReady: (promise) => promiseCollector.collect(promise)
   }, SolidJSHotReloadGuardProvider);
 
-  // Lottie workers preload — fire and forget.
+  // Lottie workers preload -- fire and forget.
   lottieLoader.loadLottieWorkers();
 
   const onSendGiftClick = () => {
@@ -261,51 +266,74 @@ const Settings = () => {
           </Row>
         </div>
       </Section>
-    <Show when={!premiumBlocked()}>
-  <Section>
-    <Row clickable={() => PopupPremium.show()}>
-      <Row.Icon icon="star" class="row-icon-premium-color" />
-      <Row.Title>{i18n('Premium.Boarding.Title')}</Row.Title>
-    </Row>
-
-    <Show when={!!stars()}>
-      <Row clickable={() => PopupElement.createPopup(PopupStars)}>
-        <Row.Icon icon="star" class="row-icon-stars-color" />
-        <Row.Title titleRight={'' + stars()} titleRightSecondary>
-          {i18n('MenuTelegramStars')}
-        </Row.Title>
-      </Row>
-    </Show>
-
-    <Show when={String(starsTon()) !== '0'}>
-      <Row clickable={() => PopupElement.createPopup(PopupStars, {ton: true})}>
-        <Row.Icon icon="ton" />
-        <Row.Title titleRight={formatNanoton(starsTon())} titleRightSecondary>
-          {i18n('MenuTelegramStarsTon')}
-        </Row.Title>
-      </Row>
-    </Show>
-
-              <Row clickable={onSendGiftClick}>
-            <Row.Icon icon="gift" />
-            <Row.Title>{i18n('Chat.Menu.SendGift')}
-
- </Row.Title>
+      <Show when={!premiumBlocked()}>
+        <Section>
+          <Row clickable={() => PopupPremium.show()}>
+            <Row.Icon icon="star" class="row-icon-premium-color" />
+            <Row.Title>{i18n('Premium.Boarding.Title')}</Row.Title>
           </Row>
 
-  </Section>
-</Show>
+          <Show when={!!stars()}>
+            <Row clickable={() => PopupElement.createPopup(PopupStars)}>
+              <Row.Icon icon="star" class="row-icon-stars-color" />
+              <Row.Title titleRight={'' + stars()} titleRightSecondary>
+                {i18n('MenuTelegramStars')}
+              </Row.Title>
+            </Row>
+          </Show>
 
+          <Show when={String(starsTon()) !== '0'}>
+            <Row clickable={() => PopupElement.createPopup(PopupStars, {ton: true})}>
+              <Row.Icon icon="ton" />
+              <Row.Title titleRight={formatNanoton(starsTon())} titleRightSecondary>
+                {i18n('MenuTelegramStarsTon')}
+              </Row.Title>
+            </Row>
+          </Show>
+
+          <Row clickable={onSendGiftClick}>
+            <Row.Icon icon="gift" />
+            <Row.Title>{i18n('Chat.Menu.SendGift')}</Row.Title>
+          </Row>
+        </Section>
+      </Show>
+
+      {/* ===== ✅ قسم مميزات Meta المعدل ===== */}
       <Section>
-        <Row clickable={() => alert('تم تفعيل مميزات Meta بنجاح')}>
+        <div style="padding: 8px 16px; font-weight: 600; font-size: 14px; color: var(--color-accent);">
+          مميزات Meta المتقدمة
+        </div>
+
+        <Row clickable={() => setAntiScreenshot(!antiScreenshot())}>
           <Row.Icon icon="settings" />
-          <Row.Title titleRight="إدارة الظهور والقراءة" titleRightSecondary>
-            مميزات Meta المتقدمة
+          <Row.Title titleRight={antiScreenshot() ? "مفعل" : "معطل"} titleRightSecondary>
+            حماية محادثات Meta
+            <div style="font-size: 12px; color: var(--color-text-secondary); opacity: 0.7; margin-top: 2px;">
+              منع الآخرين من أخذ لقطة شاشة للمحادثات أو التسجيل.
+            </div>
+          </Row.Title>
+        </Row>
+
+        <Row clickable={() => setReadReceipts(!readReceipts())}>
+          <Row.Icon icon="unmute" />
+          <Row.Title titleRight={readReceipts() ? "مفعل" : "معطل"} titleRightSecondary>
+            إخفاء علامة القراءة
+            <div style="font-size: 12px; color: var(--color-text-secondary); opacity: 0.7; margin-top: 2px;">
+              قراءة الرسائل دون أن يظهر للطرف الآخر أنك قرأتها.
+            </div>
+          </Row.Title>
+        </Row>
+
+        <Row clickable={() => setHdUploads(!hdUploads())}>
+          <Row.Icon icon="data" />
+          <Row.Title titleRight={hdUploads() ? "مفعل" : "معطل"} titleRightSecondary>
+            رفع الوسائط بجودة HD
+            <div style="font-size: 12px; color: var(--color-text-secondary); opacity: 0.7; margin-top: 2px;">
+              إرسال الصور والفيديوهات بأعلى جودة ممكنة تلقائياً.
+            </div>
           </Row.Title>
         </Row>
       </Section>
-
-
     </>
   );
 };
