@@ -306,6 +306,8 @@ const Settings = () => {
   return (
     <>
       {peerProfileElement}
+      
+      {/* ===== القسم الأول: الإعدادات الأساسية ===== */}
       <Section>
         <div class="profile-buttons">
           <For each={subTabConfigs}>
@@ -334,6 +336,8 @@ const Settings = () => {
           </Row>
         </div>
       </Section>
+
+      {/* ===== القسم الثاني: Premium ===== */}
       <Show when={!premiumBlocked()}>
         <Section>
           <Row clickable={() => PopupPremium.show()}>
@@ -366,20 +370,25 @@ const Settings = () => {
         </Section>
       </Show>
 
-      {/* ===== ✅ قسم مميزات Meta ===== */}
+      {/* ===== ✅ القسم الثالث: مميزات Meta (منفصل ومستقل) ===== */}
       <Section>
+        {/* عنوان القسم */}
         <div style={{
           padding: '12px 16px 8px 16px',
           'font-weight': '700',
           'font-size': '15px',
           color: 'var(--color-accent)',
+          'border-bottom': '1px solid var(--color-border)',
+          'margin-bottom': '4px',
           animation: 'fadeInDown 0.4s ease'
         }}>
           ✦ مميزات Meta المتقدمة
         </div>
 
+        {/* المميزات */}
         <div style={{ animation: 'slideUp 0.35s ease' }}>
-          {/* ميزة 1 */}
+          
+          {/* ميزة 1: حماية المحادثات */}
           <Row>
             <Row.Icon icon="lock" />
             <Row.Title
@@ -391,7 +400,7 @@ const Settings = () => {
               }
               titleRightSecondary
             >
-              <div style={{ 'font-weight': '500' }}>حماية محادثات Meta</div>
+              <div style={{ 'font-weight': '500' }}>🛡️ حماية محادثات Meta</div>
               <div style={{
                 'font-size': '12px',
                 color: 'var(--color-text-secondary)',
@@ -404,7 +413,7 @@ const Settings = () => {
             </Row.Title>
           </Row>
 
-          {/* ميزة 2 */}
+          {/* ميزة 2: إخفاء علامة القراءة */}
           <Row>
             <Row.Icon icon="unmute" />
             <Row.Title
@@ -416,7 +425,7 @@ const Settings = () => {
               }
               titleRightSecondary
             >
-              <div style={{ 'font-weight': '500' }}>إخفاء علامة القراءة</div>
+              <div style={{ 'font-weight': '500' }}>👁️ إخفاء علامة القراءة</div>
               <div style={{
                 'font-size': '12px',
                 color: 'var(--color-text-secondary)',
@@ -429,7 +438,7 @@ const Settings = () => {
             </Row.Title>
           </Row>
 
-          {/* ميزة 3 */}
+          {/* ميزة 3: رفع الوسائط بجودة HD */}
           <Row>
             <Row.Icon icon="data" />
             <Row.Title
@@ -441,7 +450,7 @@ const Settings = () => {
               }
               titleRightSecondary
             >
-              <div style={{ 'font-weight': '500' }}>رفع الوسائط بجودة HD</div>
+              <div style={{ 'font-weight': '500' }}>📤 رفع الوسائط بجودة HD</div>
               <div style={{
                 'font-size': '12px',
                 color: 'var(--color-text-secondary)',
@@ -453,6 +462,7 @@ const Settings = () => {
               </div>
             </Row.Title>
           </Row>
+
         </div>
       </Section>
 
