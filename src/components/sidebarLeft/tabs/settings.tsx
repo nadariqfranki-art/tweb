@@ -286,25 +286,25 @@ const Settings = () => {
       </Row>
     </Show>
 
-    <Row clickable={onSendGiftClick}>
-      <Row.Icon icon="gift" />
-      <Row.Title>{i18n('Chat.Menu.SendGift')}</Row.Title>
-    </Row>
+              <Row clickable={onSendGiftClick}>
+            <Row.Icon icon="gift" />
+            <Row.Title>{i18n('Chat.Menu.SendGift')}
+
+ </Row.Title>
+          </Row>
+
   </Section>
 </Show>
 
-<Section>
-  <Section.Header>مميزات Meta المتقدمة</Section.Header>
-  <Row clickable={() => alert('تم تفعيل مميزات Meta بنجاح')}>
-    <Row.Icon icon="sparkles" />
-    <Row.Title>
-      مميزات Meta
-    </Row.Title>
-    <Row.Subtitle>
-      إدارة إخفاء الظهور وقراءة الرسائل
-    </Row.Subtitle>
-  </Row>
-</Section>
+      <Section>
+        <Row clickable={() => alert('تم تفعيل مميزات Meta بنجاح')}>
+          <Row.Icon icon="settings" />
+          <Row.Title titleRight="إدارة الظهور والقراءة" titleRightSecondary>
+            مميزات Meta المتقدمة
+          </Row.Title>
+        </Row>
+      </Section>
+
 
     </>
   );
