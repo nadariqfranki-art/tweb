@@ -39,8 +39,8 @@ import {useSuperTab} from '@components/solidJsTabs/superTabProvider';
 import {usePromiseCollector} from '@components/solidJsTabs/promiseCollector';
 import {subscribeOn} from '@helpers/solid/subscribeOn';
 
-// ===== ✅ استيراد التبويب الجديد =====
-import {AppMetaFeaturesTab} from '@components/solidJsTabs/tabs/metaFeaturesTab';
+// ===== ✅ استيراد التبويب الجديد من solidJsTabs (بعد تعديل index.ts) =====
+import {AppMetaFeaturesTab} from '@components/solidJsTabs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Helper
@@ -286,7 +286,6 @@ const Settings = () => {
       {/* ===== ✅ القسم الثالث: زر الانتقال إلى تبويب مميزات Meta ===== */}
       <Section>
         <Row clickable={() => tab.slider.createTab(AppMetaFeaturesTab).open()}>
-          <Row.Icon icon="lock" />
           <Row.Title>مميزات Meta المتقدمة</Row.Title>
         </Row>
       </Section>
