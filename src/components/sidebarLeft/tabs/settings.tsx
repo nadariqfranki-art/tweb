@@ -72,7 +72,7 @@ const makeSubTabConfig = (
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// ✅ Toggle Switch Component (زر أخضر متحرك)
+// ✅ Toggle Switch Component (زر أخضر متحرك) - نسخة معدلة
 // ─────────────────────────────────────────────────────────────────────────────
 
 const ToggleSwitch = (props: { value: boolean; onChange: (val: boolean) => void }) => {
@@ -84,6 +84,7 @@ const ToggleSwitch = (props: { value: boolean; onChange: (val: boolean) => void 
 
   const handleClick = (e: Event) => {
     e.stopPropagation();
+    e.preventDefault();
     const newVal = !isOn();
     setIsOn(newVal);
     props.onChange(newVal);
