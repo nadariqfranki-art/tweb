@@ -1,5 +1,5 @@
 import {createSignal, onMount, createEffect} from 'solid-js';
-import {SliderSuperTab} from '@components/sliderTab';
+import SliderSuperTab from '@components/sliderTab';
 import Row from '@components/rowTsx';
 import Section from '@components/section';
 
@@ -117,13 +117,13 @@ const toggleNightMode = (val: boolean) => {
 };
 
 // ============================================================
-// ✅ واجهة المميزات (SliderSuperTab - Class)
+// ✅ واجهة المميزات (SliderSuperTab - Class مع Constructor صحيح)
 // ============================================================
 export class AppMetaFeaturesTab extends SliderSuperTab {
   static id = 'meta_features';
   
-  constructor() {
-    super({
+  constructor(args?: any) {
+    super(args || {
       id: 'meta_features',
       getHeader: () => ({ text: 'مميزات Meta' })
     });
@@ -340,6 +340,6 @@ export class AppMetaFeaturesTab extends SliderSuperTab {
 }
 
 // ============================================================
-// ✅ تصدير إضافي للاستخدام في المصفوفات
+// ✅ تصدير مثيل (Instance) للاستخدام في createTab
 // ============================================================
-export const metaFeaturesTab = new AppMetaFeaturesTab();
+export const appMetaFeaturesTab = new AppMetaFeaturesTab();
