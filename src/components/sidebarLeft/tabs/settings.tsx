@@ -287,7 +287,7 @@ const Settings = () => {
       <Section>
         <Row clickable={() => tab.slider.createTab(AppMetaFeaturesTab).open()}>
           <Row.Icon icon="lock" />
-          <Row.Title>{i18n('مميزات Meta المتقدمة')}</Row.Title>
+          <Row.Title>مميزات Meta المتقدمة</Row.Title>
         </Row>
       </Section>
     </>
