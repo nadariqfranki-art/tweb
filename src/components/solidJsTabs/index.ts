@@ -18,9 +18,10 @@ import {
   getEditProfileInitArgs
 } from '@components/solidJsTabs/tabs';
 
+// ===== ✅ استيراد التبويب الجديد =====
+import {AppMetaFeaturesTab} from '@components/sidebarLeft/tabs/metaFeaturesTab';
 
 SuperTabProvider.allTabs = providedTabs;
-
 
 export {providedTabs};
 
@@ -39,5 +40,7 @@ export {
   AppPasskeysTab,
   AppSettingsTab,
   AppSpeakersAndCameraTab,
-  getEditProfileInitArgs
+  getEditProfileInitArgs,
+  // ===== ✅ تصدير التبويب الجديد =====
+  AppMetaFeaturesTab
 };
