@@ -96,12 +96,12 @@ const ToggleSwitch = (props: { value: boolean; onChange: (val: boolean) => void 
         width: '44px',
         height: '24px',
         background: isOn() ? 'var(--color-accent, #34a853)' : '#ccc',
-        borderRadius: '12px',
+        'border-radius': '12px',
         cursor: 'pointer',
         position: 'relative',
         transition: 'background 0.25s ease',
-        flexShrink: '0',
-        boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.2)'
+        'flex-shrink': '0',
+        'box-shadow': 'inset 0 1px 3px rgba(0,0,0,0.2)'
       }}
     >
       <div
@@ -109,12 +109,12 @@ const ToggleSwitch = (props: { value: boolean; onChange: (val: boolean) => void 
           width: '20px',
           height: '20px',
           background: '#fff',
-          borderRadius: '50%',
+          'border-radius': '50%',
           position: 'absolute',
           top: '2px',
           left: isOn() ? '22px' : '2px',
           transition: 'left 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)',
-          boxShadow: '0 1px 4px rgba(0,0,0,0.3)'
+          'box-shadow': '0 1px 4px rgba(0,0,0,0.3)'
         }}
       />
     </div>
@@ -370,8 +370,8 @@ const Settings = () => {
       <Section>
         <div style={{
           padding: '12px 16px 8px 16px',
-          fontWeight: '700',
-          fontSize: '15px',
+          'font-weight': '700',
+          'font-size': '15px',
           color: 'var(--color-accent)',
           animation: 'fadeInDown 0.4s ease'
         }}>
@@ -391,13 +391,13 @@ const Settings = () => {
               }
               titleRightSecondary
             >
-              <div style={{ fontWeight: '500' }}>حماية محادثات Meta</div>
+              <div style={{ 'font-weight': '500' }}>حماية محادثات Meta</div>
               <div style={{
-                fontSize: '12px',
+                'font-size': '12px',
                 color: 'var(--color-text-secondary)',
                 opacity: 0.7,
-                marginTop: '2px',
-                fontWeight: 'normal'
+                'margin-top': '2px',
+                'font-weight': 'normal'
               }}>
                 منع الآخرين من أخذ لقطة شاشة للمحادثات أو التسجيل.
               </div>
@@ -416,13 +416,13 @@ const Settings = () => {
               }
               titleRightSecondary
             >
-              <div style={{ fontWeight: '500' }}>إخفاء علامة القراءة</div>
+              <div style={{ 'font-weight': '500' }}>إخفاء علامة القراءة</div>
               <div style={{
-                fontSize: '12px',
+                'font-size': '12px',
                 color: 'var(--color-text-secondary)',
                 opacity: 0.7,
-                marginTop: '2px',
-                fontWeight: 'normal'
+                'margin-top': '2px',
+                'font-weight': 'normal'
               }}>
                 قراءة الرسائل دون أن يظهر للطرف الآخر أنك قرأتها.
               </div>
@@ -441,13 +441,13 @@ const Settings = () => {
               }
               titleRightSecondary
             >
-              <div style={{ fontWeight: '500' }}>رفع الوسائط بجودة HD</div>
+              <div style={{ 'font-weight': '500' }}>رفع الوسائط بجودة HD</div>
               <div style={{
-                fontSize: '12px',
+                'font-size': '12px',
                 color: 'var(--color-text-secondary)',
                 opacity: 0.7,
-                marginTop: '2px',
-                fontWeight: 'normal'
+                'margin-top': '2px',
+                'font-weight': 'normal'
               }}>
                 إرسال الصور والفيديوهات بأعلى جودة ممكنة تلقائياً.
               </div>
