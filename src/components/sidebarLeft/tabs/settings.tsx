@@ -542,9 +542,8 @@ const Settings = () => {
             </Row.Title>
           </Row>
 
-          {/* ميزة 6: الوضع الليلي */}
+          {/* ميزة 6: الوضع الليلي (بدون أيقونة) */}
           <Row>
-            <Row.Icon icon="theme" />
             <Row.Title
               titleRight={
                 <ToggleSwitch
