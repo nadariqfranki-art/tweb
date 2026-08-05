@@ -401,9 +401,8 @@ const Settings = () => {
         </Section>
       </Show>
 
-      {/* ===== ✅ القسم الثالث: مميزات Meta (منفصل ومستقل) ===== */}
+      {/* ===== ✅ القسم الثالث: مميزات Meta ===== */}
       <Section>
-        {/* عنوان القسم */}
         <div style={{
           padding: '12px 16px 8px 16px',
           'font-weight': '700',
@@ -416,7 +415,6 @@ const Settings = () => {
           ✦ مميزات Meta المتقدمة
         </div>
 
-        {/* المميزات */}
         <div style={{ animation: 'slideUp 0.35s ease' }}>
           
           {/* ميزة 1: حماية المحادثات */}
@@ -546,7 +544,7 @@ const Settings = () => {
 
           {/* ميزة 6: الوضع الليلي */}
           <Row>
-            <Row.Icon icon="moon" />
+            <Row.Icon icon="night" />
             <Row.Title
               titleRight={
                 <ToggleSwitch
