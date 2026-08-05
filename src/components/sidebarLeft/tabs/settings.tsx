@@ -544,7 +544,7 @@ const Settings = () => {
 
           {/* ميزة 6: الوضع الليلي */}
           <Row>
-            <Row.Icon icon="night" />
+            <Row.Icon icon="theme" />
             <Row.Title
               titleRight={
                 <ToggleSwitch
