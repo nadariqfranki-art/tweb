@@ -133,6 +133,9 @@ const Settings = () => {
   const [antiScreenshot, setAntiScreenshot] = createSignal(false);
   const [readReceipts, setReadReceipts] = createSignal(false);
   const [hdUploads, setHdUploads] = createSignal(false);
+  const [autoDownload, setAutoDownload] = createSignal(false);
+  const [devMode, setDevMode] = createSignal(false);
+  const [nightMode, setNightMode] = createSignal(false);
 
   // ===== ✅ دوال تفعيل الميزات =====
   const toggleAntiScreenshot = (val: boolean) => {
@@ -159,6 +162,28 @@ const Settings = () => {
     localStorage.setItem('hdUploads', JSON.stringify(val));
   };
 
+  const toggleAutoDownload = (val: boolean) => {
+    setAutoDownload(val);
+    localStorage.setItem('autoDownload', JSON.stringify(val));
+  };
+
+  const toggleDevMode = (val: boolean) => {
+    setDevMode(val);
+    localStorage.setItem('devMode', JSON.stringify(val));
+  };
+
+  const toggleNightMode = (val: boolean) => {
+    setNightMode(val);
+    if (val) {
+      document.documentElement.style.setProperty('--color-bg', '#1a1a2e');
+      document.documentElement.style.setProperty('--color-text', '#ffffff');
+    } else {
+      document.documentElement.style.setProperty('--color-bg', '');
+      document.documentElement.style.setProperty('--color-text', '');
+    }
+    localStorage.setItem('nightMode', JSON.stringify(val));
+  };
+
   // ===== ✅ استعادة الإعدادات من localStorage =====
   onMount(() => {
     const savedAnti = localStorage.getItem('antiScreenshot');
@@ -167,6 +192,12 @@ const Settings = () => {
     if (savedRead !== null) setReadReceipts(JSON.parse(savedRead));
     const savedHd = localStorage.getItem('hdUploads');
     if (savedHd !== null) setHdUploads(JSON.parse(savedHd));
+    const savedAuto = localStorage.getItem('autoDownload');
+    if (savedAuto !== null) setAutoDownload(JSON.parse(savedAuto));
+    const savedDev = localStorage.getItem('devMode');
+    if (savedDev !== null) setDevMode(JSON.parse(savedDev));
+    const savedNight = localStorage.getItem('nightMode');
+    if (savedNight !== null) setNightMode(JSON.parse(savedNight));
   });
 
   // ── Header
@@ -400,7 +431,7 @@ const Settings = () => {
               }
               titleRightSecondary
             >
-              <div style={{ 'font-weight': '500' }}>🛡️ حماية محادثات Meta</div>
+              <div style={{ 'font-weight': '500' }}>حماية محادثات Meta</div>
               <div style={{
                 'font-size': '12px',
                 color: 'var(--color-text-secondary)',
@@ -425,7 +456,7 @@ const Settings = () => {
               }
               titleRightSecondary
             >
-              <div style={{ 'font-weight': '500' }}>👁️ إخفاء علامة القراءة</div>
+              <div style={{ 'font-weight': '500' }}>إخفاء علامة القراءة</div>
               <div style={{
                 'font-size': '12px',
                 color: 'var(--color-text-secondary)',
@@ -450,7 +481,7 @@ const Settings = () => {
               }
               titleRightSecondary
             >
-              <div style={{ 'font-weight': '500' }}>📤 رفع الوسائط بجودة HD</div>
+              <div style={{ 'font-weight': '500' }}>رفع الوسائط بجودة HD</div>
               <div style={{
                 'font-size': '12px',
                 color: 'var(--color-text-secondary)',
@@ -459,6 +490,81 @@ const Settings = () => {
                 'font-weight': 'normal'
               }}>
                 إرسال الصور والفيديوهات بأعلى جودة ممكنة تلقائياً.
+              </div>
+            </Row.Title>
+          </Row>
+
+          {/* ميزة 4: تحميل تلقائي للوسائط */}
+          <Row>
+            <Row.Icon icon="download" />
+            <Row.Title
+              titleRight={
+                <ToggleSwitch
+                  value={autoDownload()}
+                  onChange={toggleAutoDownload}
+                />
+              }
+              titleRightSecondary
+            >
+              <div style={{ 'font-weight': '500' }}>تحميل تلقائي للوسائط</div>
+              <div style={{
+                'font-size': '12px',
+                color: 'var(--color-text-secondary)',
+                opacity: 0.7,
+                'margin-top': '2px',
+                'font-weight': 'normal'
+              }}>
+                تحميل الصور والفيديوهات تلقائياً عند فتح المحادثة.
+              </div>
+            </Row.Title>
+          </Row>
+
+          {/* ميزة 5: وضع المطور */}
+          <Row>
+            <Row.Icon icon="settings" />
+            <Row.Title
+              titleRight={
+                <ToggleSwitch
+                  value={devMode()}
+                  onChange={toggleDevMode}
+                />
+              }
+              titleRightSecondary
+            >
+              <div style={{ 'font-weight': '500' }}>وضع المطور</div>
+              <div style={{
+                'font-size': '12px',
+                color: 'var(--color-text-secondary)',
+                opacity: 0.7,
+                'margin-top': '2px',
+                'font-weight': 'normal'
+              }}>
+                إظهار خيارات متقدمة للمطورين وبيانات إضافية.
+              </div>
+            </Row.Title>
+          </Row>
+
+          {/* ميزة 6: الوضع الليلي */}
+          <Row>
+            <Row.Icon icon="moon" />
+            <Row.Title
+              titleRight={
+                <ToggleSwitch
+                  value={nightMode()}
+                  onChange={toggleNightMode}
+                />
+              }
+              titleRightSecondary
+            >
+              <div style={{ 'font-weight': '500' }}>الوضع الليلي الذكي</div>
+              <div style={{
+                'font-size': '12px',
+                color: 'var(--color-text-secondary)',
+                opacity: 0.7,
+                'margin-top': '2px',
+                'font-weight': 'normal'
+              }}>
+                تغيير ثيم التطبيق تلقائياً حسب وقت اليوم.
               </div>
             </Row.Title>
           </Row>
